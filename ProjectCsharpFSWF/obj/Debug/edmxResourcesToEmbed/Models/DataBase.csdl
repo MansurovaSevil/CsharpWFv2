@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FutbolSahesiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Meydancalar">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Bookings" Relationship="FutbolSahesiModel.FK_Booking_Meydancalar" FromRole="Meydancalar" ToRole="Booking" />
+    <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="Mushteri">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Bookings" Relationship="FutbolSahesiModel.FK_Booking_Mushteri" FromRole="Mushteri" ToRole="Booking" />
+  </EntityType>
+  <EntityType Name="Otaqlar">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Number" Type="Int32" Nullable="false" />
+    <Property Name="Control" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Amount" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Bookings" Relationship="FutbolSahesiModel.FK_Booking_Otaqlar" FromRole="Otaqlar" ToRole="Booking" />
+  </EntityType>
+  <EntityContainer Name="FutbolSahesiEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Meydancalars" EntityType="Self.Meydancalar" />
+    <EntitySet Name="Mushteris" EntityType="Self.Mushteri" />
+    <EntitySet Name="Otaqlars" EntityType="Self.Otaqlar" />
+    <EntitySet Name="Bookings" EntityType="FutbolSahesiModel.Booking" />
+    <AssociationSet Name="FK_Booking_Meydancalar" Association="FutbolSahesiModel.FK_Booking_Meydancalar">
+      <End Role="Meydancalar" EntitySet="Meydancalars" />
+      <End Role="Booking" EntitySet="Bookings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Booking_Mushteri" Association="FutbolSahesiModel.FK_Booking_Mushteri">
+      <End Role="Mushteri" EntitySet="Mushteris" />
+      <End Role="Booking" EntitySet="Bookings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Booking_Otaqlar" Association="FutbolSahesiModel.FK_Booking_Otaqlar">
+      <End Role="Otaqlar" EntitySet="Otaqlars" />
+      <End Role="Booking" EntitySet="Bookings" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Booking">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Time" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="MeydancaId" Type="Int32" Nullable="false" />
+    <Property Name="OtaqId" Type="Int32" />
+    <Property Name="MushteriId" Type="Int32" Nullable="false" />
+    <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Meydancalar" Relationship="FutbolSahesiModel.FK_Booking_Meydancalar" FromRole="Booking" ToRole="Meydancalar" />
+    <NavigationProperty Name="Mushteri" Relationship="FutbolSahesiModel.FK_Booking_Mushteri" FromRole="Booking" ToRole="Mushteri" />
+    <NavigationProperty Name="Otaqlar" Relationship="FutbolSahesiModel.FK_Booking_Otaqlar" FromRole="Booking" ToRole="Otaqlar" />
+    <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <Association Name="FK_Booking_Meydancalar">
+    <End Type="FutbolSahesiModel.Meydancalar" Role="Meydancalar" Multiplicity="1" />
+    <End Type="FutbolSahesiModel.Booking" Role="Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Meydancalar">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="MeydancaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Booking_Mushteri">
+    <End Type="FutbolSahesiModel.Mushteri" Role="Mushteri" Multiplicity="1" />
+    <End Type="FutbolSahesiModel.Booking" Role="Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mushteri">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="MushteriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Booking_Otaqlar">
+    <End Type="FutbolSahesiModel.Otaqlar" Role="Otaqlar" Multiplicity="0..1" />
+    <End Type="FutbolSahesiModel.Booking" Role="Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Otaqlar">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="OtaqId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
