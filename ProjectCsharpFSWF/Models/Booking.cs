@@ -18,10 +18,10 @@ namespace ProjectCsharpFSWF.Models
         public System.DateTime Date { get; set; }
         public System.TimeSpan Time { get; set; }
         public int MeydancaId { get; set; }
-        public Nullable<int> OtaqId { get; set; }
+        public int OtaqId { get; set; }
         public int MushteriId { get; set; }
         public System.DateTime CreatedAt { get; set; }
-        public Nullable<decimal> Price { get; set; }
+        public decimal Price { get; set; }
     
         public virtual Meydancalar Meydancalar { get; set; }
         public virtual Mushteri Mushteri { get; set; }

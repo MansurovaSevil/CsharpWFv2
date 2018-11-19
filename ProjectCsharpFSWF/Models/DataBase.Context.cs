@@ -25,9 +25,9 @@ namespace ProjectCsharpFSWF.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Booking> Bookings { get; set; }
         public virtual DbSet<Meydancalar> Meydancalars { get; set; }
         public virtual DbSet<Mushteri> Mushteris { get; set; }
         public virtual DbSet<Otaqlar> Otaqlars { get; set; }
-        public virtual DbSet<Booking> Bookings { get; set; }
     }
 }

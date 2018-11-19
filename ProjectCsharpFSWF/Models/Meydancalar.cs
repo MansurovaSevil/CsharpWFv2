@@ -21,7 +21,7 @@ namespace ProjectCsharpFSWF.Models
     
         public int Id { get; set; }
         public string Name { get; set; }
-        public Nullable<decimal> Price { get; set; }
+        public decimal Price { get; set; }
     
         public virtual ICollection<Booking> Bookings { get; set; }
     }

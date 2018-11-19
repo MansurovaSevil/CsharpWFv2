@@ -4,14 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="85b77a381fb540ffa36138a2d59e66ea" Name="Diagram1">
+      <Diagram DiagramId="9b371fd87fa24cdd98acddb23ccd0eaa" Name="Diagram1">
+        <EntityTypeShape EntityType="FutbolSahesiModel.Booking" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="FutbolSahesiModel.Meydancalar" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="FutbolSahesiModel.Mushteri" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="FutbolSahesiModel.Otaqlar" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="FutbolSahesiModel.Booking" Width="1.5" PointX="3" PointY="4.5" />
-        <AssociationConnector Association="FutbolSahesiModel.FK_Booking_Meydancalar" />
-        <AssociationConnector Association="FutbolSahesiModel.FK_Booking_Mushteri" />
-        <AssociationConnector Association="FutbolSahesiModel.FK_Booking_Otaqlar" />
+        <EntityTypeShape EntityType="FutbolSahesiModel.Mushteri" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FutbolSahesiModel.Otaqlar" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
+        <AssociationConnector Association="FutbolSahesiModel.FK_Booking_Meydancalar" ManuallyRouted="false" />
+        <AssociationConnector Association="FutbolSahesiModel.FK_Booking_Mushteri" ManuallyRouted="false" />
+        <AssociationConnector Association="FutbolSahesiModel.FK_Booking_Otaqlar" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

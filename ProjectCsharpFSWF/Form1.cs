@@ -86,12 +86,12 @@ namespace ProjectCsharpFSWF
                 return;
             }
             CmbTime.Items.Clear();
-            CmbTime.Text = " ";
+            CmbTime.Text = "";
 
             CmbPerson.Items.Clear();
             lblPerson.Visible = false;
             CmbPerson.Visible = false;
-            CmbPerson.Text = " ";
+            CmbPerson.Text = "";
             BtnAddMushteri.Visible = false;
 
 
@@ -182,8 +182,6 @@ namespace ProjectCsharpFSWF
             }
 
             
-         
-
             
             TimeSpan time  =  new TimeSpan(Convert.ToInt32(CmbTime.Text.Split(':')[0]), 0, 0);
             DateTime date = dtpDate.Value.Date;
@@ -207,11 +205,10 @@ namespace ProjectCsharpFSWF
             Price = Convert.ToDecimal(cmbPrice.Text)
         };
             
-
             ////////////////////
 
             cmbRoom.Items.Clear();
-            cmbRoom.Text = " ";
+            cmbRoom.Text = "";
             cmbPrice.Items.Clear();
             cmbPrice.Text = "";
             
@@ -223,17 +220,17 @@ namespace ProjectCsharpFSWF
             //////////////////////////////////
 
             CmbTime.Items.Clear();
-            CmbTime.Text = " ";
+            CmbTime.Text = "";
 
 
             CmbPerson.Items.Clear();
             lblPerson.Visible = false;
             CmbPerson.Visible = false;
-            CmbPerson.Text = " ";
+            CmbPerson.Text = "";
             BtnAddMushteri.Visible = false;
 
             dtpDate.Value = DateTime.Now;
-            CmbPitch.Text = " ";
+            CmbPitch.Text = "";
 
             lblComplited.Visible = true;
 

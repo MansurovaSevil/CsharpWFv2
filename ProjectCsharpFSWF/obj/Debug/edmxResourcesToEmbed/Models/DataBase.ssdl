@@ -8,18 +8,18 @@
     <Property Name="Date" Type="date" Nullable="false" />
     <Property Name="Time" Type="time" Precision="7" Nullable="false" />
     <Property Name="MeydancaId" Type="int" Nullable="false" />
-    <Property Name="OtaqId" Type="int" />
+    <Property Name="OtaqId" Type="int" Nullable="false" />
     <Property Name="MushteriId" Type="int" Nullable="false" />
     <Property Name="CreatedAt" Type="datetime" Nullable="false" />
-    <Property Name="Price" Type="money" />
+    <Property Name="Price" Type="money" Nullable="false" />
   </EntityType>
   <EntityType Name="Meydancalar">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="50" />
-    <Property Name="Price" Type="money" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Price" Type="money" Nullable="false" />
   </EntityType>
   <EntityType Name="Mushteri">
     <Key>
@@ -65,7 +65,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Booking_Otaqlar">
-    <End Role="Otaqlar" Type="Self.Otaqlar" Multiplicity="0..1" />
+    <End Role="Otaqlar" Type="Self.Otaqlar" Multiplicity="1" />
     <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Otaqlar">
