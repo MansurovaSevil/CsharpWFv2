@@ -24,41 +24,50 @@ namespace ProjectCsharpFSWF
             InitializeComponent();
             FillMeydancalarList();
 
-            FillTime();
-            FillMushteri();
-          
+           
+             
         }
 
-        private void FillMeydancalarList()
+        private void FillPriceForPtich()
         {
-
-            ////////////////////////////// Registration /////////////////////////////////////
-            cmbPrice.Items.Clear();
             if (CmbPitch.SelectedItem != null)
             {
                 Meydancalar meydanca = new Meydancalar();
                 meydanca = db.Meydancalars.FirstOrDefault(m => m.Name == CmbPitch.Text);
                 cmbPrice.Items.Add(meydanca.Price);
+                //MessageBox.Show(meydanca.Price.ToString());
             }
+        }
+        private void FillMeydancalarList()
+        {
+
+            ////////////////////////////// Registration /////////////////////////////////////
+         
+            
+          
 
             CmbPitch.Items.Clear();
+            
             foreach (Meydancalar Item in db.Meydancalars.ToList())
             {
                 CmbPitch.Items.Add(Item.Name);
+                cmbSPitchs.Items.Add(Item.Name);
             }
 
-             
+
+
             foreach (Otaqlar Item in db.Otaqlars.ToList())
             {
                 cmbRoom.Items.Add(Item.Number);
             }
 
+           
           
         }
 
         private void CmbPitch_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            FillPriceForPtich();
             FillTime();
         }
         private void dtpDate_ValueChanged(object sender, EventArgs e)
@@ -131,6 +140,8 @@ namespace ProjectCsharpFSWF
              CmbPerson.Items.Add(item.Name + "," + item.Surname + "," + item.Phone);
             }
 
+        
+
         }
 
         private void CmbTime_SelectedIndexChanged(object sender, EventArgs e)
@@ -146,7 +157,9 @@ namespace ProjectCsharpFSWF
         private void cmbRoom_SelectedIndexChanged(object sender, EventArgs e)
         {
             FillMushteri();
-            FillMeydancalarList();
+            ////FillMeydancalarList();
+            
+
         }
         public void AddedMushteri(Mushteri msht)
         {
@@ -168,6 +181,10 @@ namespace ProjectCsharpFSWF
                 return;
             }
 
+            
+         
+
+            
             TimeSpan time  =  new TimeSpan(Convert.ToInt32(CmbTime.Text.Split(':')[0]), 0, 0);
             DateTime date = dtpDate.Value.Date;
 
@@ -179,26 +196,35 @@ namespace ProjectCsharpFSWF
             string phone = CmbPerson.Text.Split(',')[2];
 
 
-                Booking book = new Booking
-            {
-                MeydancaId = db.Meydancalars.FirstOrDefault(m=>m.Name == CmbPitch.Text).Id,
-                Date = date,
-                Time = time,
-                CreatedAt = DateTime.Now,
-                MushteriId = db.Mushteris.FirstOrDefault(m=>m.Phone == phone).Id
-            };
-
-            db.Bookings.Add(book);
-            db.SaveChanges();
+            Booking book = new Booking
+        {
+            MeydancaId = db.Meydancalars.FirstOrDefault(m => m.Name == CmbPitch.Text).Id,
+            Date = date,
+            Time = time,
+            OtaqId = cmbRoom.SelectedIndex,
+            CreatedAt = DateTime.Now,
+            MushteriId = db.Mushteris.FirstOrDefault(m => m.Phone == phone).Id,
+            Price = Convert.ToDecimal(cmbPrice.Text)
+        };
+            
 
             ////////////////////
 
             cmbRoom.Items.Clear();
             cmbRoom.Text = " ";
+            cmbPrice.Items.Clear();
+            cmbPrice.Text = "";
+            
+
+            ///////////////////////////////////
+
+            db.Bookings.Add(book);
+            db.SaveChanges();
+            //////////////////////////////////
 
             CmbTime.Items.Clear();
             CmbTime.Text = " ";
-            
+
 
             CmbPerson.Items.Clear();
             lblPerson.Visible = false;
@@ -209,8 +235,9 @@ namespace ProjectCsharpFSWF
             dtpDate.Value = DateTime.Now;
             CmbPitch.Text = " ";
 
-
             lblComplited.Visible = true;
+
+           
 
         }
 
@@ -220,52 +247,54 @@ namespace ProjectCsharpFSWF
 
 
         private void FillTable() 
+
         {
-            //foreach (Booking item1 in db.Bookings.Where(b=>b.Date == dtp)
-            //{
-                
-            //}
-            
-            
-            foreach (Booking item in db.Bookings.Where(b => b.Date == dtpSDate.Value.Date).OrderBy(b => b.MeydancaId).OrderBy(b => b.Time).ToList()) 
+
+            dgvSTable.Rows.Clear();
+
+            foreach (Booking item in db.Bookings.Where(b => b.Date == dtpSDate.Value.Date).OrderBy(b => b.MeydancaId).ThenBy(b => b.Time).ThenBy(b=>b.Price).ToList()) 
             {
                 dgvSTable.Rows.Add(item.Id, 
-                    item.Meydancalar.Name,
-                    item.Mushteri.Name + " " + item.Mushteri.Surname,
-                    item.Mushteri.Phone,
-                    item.Date.ToString("dd.MM.yyyy"), 
-                    item.Time.ToString(@"hh\:mm"),
-                    item.Price.ToString());
+                                   item.Meydancalar.Name,
+                                   item.Mushteri.Name + " " + item.Mushteri.Surname,
+                                   item.Mushteri.Phone,
+                                   item.Date.ToString("dd.MM.yyyy"), 
+                                   item.Time.ToString(@"hh\:mm"),
+                                   item.Price.ToString());
            
             }
         }
 
         private void btnSifter_Click(object sender, EventArgs e)
         {
-            FillTable();
+            
             dgvSTable.Rows.Clear();
+            int meydancalarId = 0;
 
-            List<Booking> bookings = db.Bookings.Where(b => b.Date == dtpSDate.Value.Date).OrderBy(b => b.MeydancaId).OrderBy(b => b.Time).ToList();
-
-            foreach (Booking item in db.Bookings)
+            if (!string.IsNullOrEmpty(cmbSPitchs.Text))
             {
-                dgvSTable.Rows.Add(item.Id,
-                    item.Meydancalar.Name,
-                    item.Mushteri.Name + " " + item.Mushteri.Surname,
-                    item.Mushteri.Phone,
-                    item.Date.ToString("dd.MM.yyyy"),
-                    item.Time.ToString(@"hh\:mm"),
-                    item.Price.ToString());
-
+                meydancalarId = db.Meydancalars.FirstOrDefault(m => m.Name == cmbSPitchs.Text).Id;
             }
 
 
 
+            List<Booking> bookings = db.Bookings.Where(b => (b.Date == dtpSDate.Value.Date) && (meydancalarId != 0 ? b.MeydancaId == meydancalarId : true)).OrderBy(b => b.MeydancaId).ThenBy(b => b.Time).ThenBy(b => b.Price).ToList();
+
+            foreach (Booking item in bookings)
+            {
+                dgvSTable.Rows.Add(item.Id,
+                                   item.Meydancalar.Name,
+                                   item.Mushteri.Name + " " + item.Mushteri.Surname,
+                                   item.Mushteri.Phone,
+                                   item.Date.ToString("dd.MM.yyyy"),
+                                   item.Time.ToString(@"hh\:mm"),
+                                   item.Price.ToString());
+
+            }
+
         }
 
-     
-
-      
+  
 
     }
 }

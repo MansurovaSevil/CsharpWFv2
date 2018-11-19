@@ -29,7 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FutbolSahesi));
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.pnlTable = new System.Windows.Forms.Panel();
+            this.lblPitchs = new System.Windows.Forms.Label();
+            this.cmbSPitchs = new System.Windows.Forms.ComboBox();
             this.btnSifter = new System.Windows.Forms.Button();
             this.lblSDate = new System.Windows.Forms.Label();
             this.dtpSDate = new System.Windows.Forms.DateTimePicker();
@@ -45,7 +47,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.CmbPitch = new System.Windows.Forms.ComboBox();
             this.lblPitch = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pnlRegistration = new System.Windows.Forms.Panel();
+            this.cmbPrice = new System.Windows.Forms.ComboBox();
+            this.lblPrice = new System.Windows.Forms.Label();
             this.cmbRoom = new System.Windows.Forms.ComboBox();
             this.lblRoom = new System.Windows.Forms.Label();
             this.lblComplited = new System.Windows.Forms.Label();
@@ -57,29 +61,46 @@
             this.llblDate = new System.Windows.Forms.Label();
             this.dtpDate = new System.Windows.Forms.DateTimePicker();
             this.CmbTime = new System.Windows.Forms.ComboBox();
-            this.lblPrice = new System.Windows.Forms.Label();
-            this.cmbPrice = new System.Windows.Forms.ComboBox();
-            this.panel2.SuspendLayout();
+            this.pnlTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSTable)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.pnlRegistration.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel2
+            // pnlTable
             // 
-            this.panel2.Controls.Add(this.btnSifter);
-            this.panel2.Controls.Add(this.lblSDate);
-            this.panel2.Controls.Add(this.dtpSDate);
-            this.panel2.Controls.Add(this.dgvSTable);
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Location = new System.Drawing.Point(354, 9);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(704, 445);
-            this.panel2.TabIndex = 1;
+            this.pnlTable.Controls.Add(this.lblPitchs);
+            this.pnlTable.Controls.Add(this.cmbSPitchs);
+            this.pnlTable.Controls.Add(this.btnSifter);
+            this.pnlTable.Controls.Add(this.lblSDate);
+            this.pnlTable.Controls.Add(this.dtpSDate);
+            this.pnlTable.Controls.Add(this.dgvSTable);
+            this.pnlTable.Controls.Add(this.label2);
+            this.pnlTable.Location = new System.Drawing.Point(354, 9);
+            this.pnlTable.Name = "pnlTable";
+            this.pnlTable.Size = new System.Drawing.Size(704, 445);
+            this.pnlTable.TabIndex = 1;
+            // 
+            // lblPitchs
+            // 
+            this.lblPitchs.AutoSize = true;
+            this.lblPitchs.Location = new System.Drawing.Point(16, 66);
+            this.lblPitchs.Name = "lblPitchs";
+            this.lblPitchs.Size = new System.Drawing.Size(36, 13);
+            this.lblPitchs.TabIndex = 29;
+            this.lblPitchs.Text = "Pitchs";
+            // 
+            // cmbSPitchs
+            // 
+            this.cmbSPitchs.FormattingEnabled = true;
+            this.cmbSPitchs.Location = new System.Drawing.Point(19, 82);
+            this.cmbSPitchs.Name = "cmbSPitchs";
+            this.cmbSPitchs.Size = new System.Drawing.Size(121, 21);
+            this.cmbSPitchs.TabIndex = 28;
             // 
             // btnSifter
             // 
             this.btnSifter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btnSifter.Location = new System.Drawing.Point(19, 108);
+            this.btnSifter.Location = new System.Drawing.Point(24, 210);
             this.btnSifter.Name = "btnSifter";
             this.btnSifter.Size = new System.Drawing.Size(121, 37);
             this.btnSifter.TabIndex = 27;
@@ -90,7 +111,7 @@
             // lblSDate
             // 
             this.lblSDate.AutoSize = true;
-            this.lblSDate.Location = new System.Drawing.Point(16, 50);
+            this.lblSDate.Location = new System.Drawing.Point(21, 125);
             this.lblSDate.Name = "lblSDate";
             this.lblSDate.Size = new System.Drawing.Size(30, 13);
             this.lblSDate.TabIndex = 24;
@@ -100,7 +121,7 @@
             // 
             this.dtpSDate.CustomFormat = "dd.MM.yyyy";
             this.dtpSDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpSDate.Location = new System.Drawing.Point(16, 68);
+            this.dtpSDate.Location = new System.Drawing.Point(19, 141);
             this.dtpSDate.Name = "dtpSDate";
             this.dtpSDate.Size = new System.Drawing.Size(124, 20);
             this.dtpSDate.TabIndex = 23;
@@ -199,29 +220,46 @@
             this.lblPitch.TabIndex = 2;
             this.lblPitch.Text = "Pitch";
             // 
-            // panel1
+            // pnlRegistration
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.panel1.Controls.Add(this.cmbPrice);
-            this.panel1.Controls.Add(this.lblPrice);
-            this.panel1.Controls.Add(this.cmbRoom);
-            this.panel1.Controls.Add(this.lblRoom);
-            this.panel1.Controls.Add(this.lblComplited);
-            this.panel1.Controls.Add(this.btnSend);
-            this.panel1.Controls.Add(this.BtnAddMushteri);
-            this.panel1.Controls.Add(this.CmbPerson);
-            this.panel1.Controls.Add(this.lblPerson);
-            this.panel1.Controls.Add(this.lblTime);
-            this.panel1.Controls.Add(this.llblDate);
-            this.panel1.Controls.Add(this.dtpDate);
-            this.panel1.Controls.Add(this.CmbTime);
-            this.panel1.Controls.Add(this.lblPitch);
-            this.panel1.Controls.Add(this.CmbPitch);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(0, 9);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(332, 445);
-            this.panel1.TabIndex = 0;
+            this.pnlRegistration.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.pnlRegistration.Controls.Add(this.cmbPrice);
+            this.pnlRegistration.Controls.Add(this.lblPrice);
+            this.pnlRegistration.Controls.Add(this.cmbRoom);
+            this.pnlRegistration.Controls.Add(this.lblRoom);
+            this.pnlRegistration.Controls.Add(this.lblComplited);
+            this.pnlRegistration.Controls.Add(this.btnSend);
+            this.pnlRegistration.Controls.Add(this.BtnAddMushteri);
+            this.pnlRegistration.Controls.Add(this.CmbPerson);
+            this.pnlRegistration.Controls.Add(this.lblPerson);
+            this.pnlRegistration.Controls.Add(this.lblTime);
+            this.pnlRegistration.Controls.Add(this.llblDate);
+            this.pnlRegistration.Controls.Add(this.dtpDate);
+            this.pnlRegistration.Controls.Add(this.CmbTime);
+            this.pnlRegistration.Controls.Add(this.lblPitch);
+            this.pnlRegistration.Controls.Add(this.CmbPitch);
+            this.pnlRegistration.Controls.Add(this.label1);
+            this.pnlRegistration.Location = new System.Drawing.Point(0, 9);
+            this.pnlRegistration.Name = "pnlRegistration";
+            this.pnlRegistration.Size = new System.Drawing.Size(332, 445);
+            this.pnlRegistration.TabIndex = 0;
+            // 
+            // cmbPrice
+            // 
+            this.cmbPrice.FormattingEnabled = true;
+            this.cmbPrice.Location = new System.Drawing.Point(18, 347);
+            this.cmbPrice.Name = "cmbPrice";
+            this.cmbPrice.Size = new System.Drawing.Size(212, 21);
+            this.cmbPrice.TabIndex = 26;
+            // 
+            // lblPrice
+            // 
+            this.lblPrice.AutoSize = true;
+            this.lblPrice.Location = new System.Drawing.Point(19, 331);
+            this.lblPrice.Name = "lblPrice";
+            this.lblPrice.Size = new System.Drawing.Size(31, 13);
+            this.lblPrice.TabIndex = 25;
+            this.lblPrice.Text = "Price";
             // 
             // cmbRoom
             // 
@@ -328,51 +366,34 @@
             this.CmbTime.TabIndex = 3;
             this.CmbTime.SelectedIndexChanged += new System.EventHandler(this.CmbTime_SelectedIndexChanged);
             // 
-            // lblPrice
-            // 
-            this.lblPrice.AutoSize = true;
-            this.lblPrice.Location = new System.Drawing.Point(19, 331);
-            this.lblPrice.Name = "lblPrice";
-            this.lblPrice.Size = new System.Drawing.Size(31, 13);
-            this.lblPrice.TabIndex = 25;
-            this.lblPrice.Text = "Price";
-            // 
-            // cmbPrice
-            // 
-            this.cmbPrice.FormattingEnabled = true;
-            this.cmbPrice.Location = new System.Drawing.Point(18, 347);
-            this.cmbPrice.Name = "cmbPrice";
-            this.cmbPrice.Size = new System.Drawing.Size(212, 21);
-            this.cmbPrice.TabIndex = 26;
-            // 
             // FutbolSahesi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.ClientSize = new System.Drawing.Size(1070, 478);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pnlTable);
+            this.Controls.Add(this.pnlRegistration);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FutbolSahesi";
             this.Text = "Soccer field";
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.pnlTable.ResumeLayout(false);
+            this.pnlTable.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSTable)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.pnlRegistration.ResumeLayout(false);
+            this.pnlRegistration.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel pnlTable;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox CmbPitch;
         private System.Windows.Forms.Label lblPitch;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pnlRegistration;
         private System.Windows.Forms.ComboBox CmbPerson;
         private System.Windows.Forms.Label lblPerson;
         private System.Windows.Forms.Label lblTime;
@@ -384,7 +405,6 @@
         private System.Windows.Forms.Label lblComplited;
         private System.Windows.Forms.Button btnSifter;
         private System.Windows.Forms.Label lblSDate;
-        private System.Windows.Forms.DateTimePicker dtpSDate;
         private System.Windows.Forms.DataGridView dgvSTable;
         private System.Windows.Forms.ComboBox cmbRoom;
         private System.Windows.Forms.Label lblRoom;
@@ -397,6 +417,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.ComboBox cmbPrice;
         private System.Windows.Forms.Label lblPrice;
+        private System.Windows.Forms.Label lblPitchs;
+        private System.Windows.Forms.ComboBox cmbSPitchs;
+        private System.Windows.Forms.DateTimePicker dtpSDate;
     }
 }
 
